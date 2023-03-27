@@ -1,0 +1,52 @@
+body {
+	background: #16151A;
+	color: #F0F5F9;
+}
+
+.presentation {
+	background-image: url(https://images.ctfassets.net/wcfotm6rrl7u/1rmxjzUn8UoCrRgbL4vfCW/264974c8b309ce2fdca89d952768a309/nokia_Headphones_E1200-og_image.jpg);
+	/*padding-top: 392px;*/
+	padding-top: 200px;
+	padding-left: 65px;
+	padding-right: 200px; /* A voir */
+	padding-bottom: 100px;
+	width: 532px;
+}
+
+.title {
+	font-family: 'Urbanist';
+	font-weight: 900;
+	font-size: 96px;
+	line-height: 115px;
+}
+
+#title_1 {
+	color: #3BC8E7;
+}
+
+#presentation_paragraphe {
+	font-family: "Open Sans";
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 25px;
+}
+
+.presentation_buttons {
+	font-family: "Open Sans";
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 25px;
+	text-align: center;
+	text-decoration: none;
+	color: #F0F5F9;
+
+	width: 550px;
+	height: 40px;
+
+	border: solid;
+	border-color: #3BC8E7;
+	margin-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+}
