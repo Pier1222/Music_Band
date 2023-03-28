@@ -1,27 +1,83 @@
+/* CSS de base pour toute la page */
+header {
+	max-width: 100%;
+}
+
 body {
 	background: #16151A;
 	color: #F0F5F9;
+	max-width: 1440px;
+	font-family: 'Urbanist';
 }
 
-.presentation {
-	background-image: url(https://images.ctfassets.net/wcfotm6rrl7u/1rmxjzUn8UoCrRgbL4vfCW/264974c8b309ce2fdca89d952768a309/nokia_Headphones_E1200-og_image.jpg);
+svg {
+	float: left;
+}
+
+.blue_text {
+	color: #3BC8E7;
+}
+
+.div_category_title {
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21.6px;
+}
+
+/* Pour les 2 parties demandant des caroussels (genres et top playlist) */
+.div_caroussel {
+	margin-top: 60px;
+	margin-left: 90px;
+}
+
+.div_caroussel_title {
+	margin-left: 13px;
+	margin-bottom: 20px;
+
+}
+
+.div_caroussel_elements_list {
+	display: flex;
+	flex-direction: row;
+}
+
+.div_caroussel_one_element {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 30px;
+
+	margin-right: 23px;
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+}
+
+.img_caroussel {
+	width: 184px;
+}
+
+.text_caroussel {
+	margin-left: 6px;
+}
+
+
+/* Présentation avec titre et boutons pour écouter/s'abonner */
+.div_presentation {
+	/*background-image: url(https://images.ctfassets.net/wcfotm6rrl7u/1rmxjzUn8UoCrRgbL4vfCW/264974c8b309ce2fdca89d952768a309/nokia_Headphones_E1200-og_image.jpg);*/
+	background-image: url(images/Nokia_Headphones.jpg);
+	background-size: cover;
 	/*padding-top: 392px;*/
 	padding-top: 200px;
 	padding-left: 65px;
-	padding-right: 200px; /* A voir */
 	padding-bottom: 100px;
-	width: 532px;
+	/*width: 532px;*/
+	max-width: 1440px;
 }
 
-.title {
-	font-family: 'Urbanist';
+.div_title {
 	font-weight: 900;
 	font-size: 96px;
-	line-height: 115px;
-}
-
-#title_1 {
-	color: #3BC8E7;
+	line-height: 115.2px;
 }
 
 #presentation_paragraphe {
@@ -29,6 +85,12 @@ body {
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 25px;
+}
+
+.div_presentation_buttons {
+	display: flex;
+	flex-direction: row;
+	max-width: 450px;
 }
 
 .presentation_buttons {
@@ -40,13 +102,166 @@ body {
 	text-decoration: none;
 	color: #F0F5F9;
 
-	width: 550px;
-	height: 40px;
-
 	border: solid;
 	border-color: #3BC8E7;
 	margin-right: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	margin-top: 30px;
 
+	flex: 1;
+	padding: lem;
+
+}
+
+#presentation_buttons_1 {
+	background-color: #3BC8E7;
+	cursor: pointer;
+}
+
+#presentation_buttons_2 {
+	background-color: #1fe0; /*Transparent*/
+	cursor: pointer;
+}
+
+/* Les genres sont gérés par les DIV des caroussels */
+
+/* Les 2 tops 10 */
+.div_top_10 {
+	margin-top: 123px;
+	padding-left: 90px;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.47) 0%, rgba(196, 196, 196, 0) 100%);
+
+	/* Essaye d'afficher les 2 tableaux sur la 
+	même ligne, si il n'y a pas assez de place,
+	il les affichera en colonne */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.div_top_10_table {
+	display: flex;
+	flex-direction: column;
+	margin-right: 82px;
+}
+
+.div_top_10_title {
+	padding-top: 37px;
+	margin-bottom: 20px;
+	margin-left: 6px;
+}
+
+.div_top_10_element {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+
+	max-width: fit-content;
+	border-bottom: solid;
+	padding-top: 16px;
+	margin-top: 5px;
+	padding-bottom: 11px;
+	padding-left: 6px;
+	padding-right: 6px;
+	border-bottom-width: 1px;
+	/*Du gris avec 20% d'opacité*/
+	border-bottom-color: rgba(196, 196, 196, 0.2);
+
+	cursor: pointer;
+
+}
+
+
+@keyframes top_10_hover {
+	from {background-color: #1fe0;}
+	to {background-color: rgba(59, 200, 231, 0.2);}
+}
+
+.div_top_10_element:hover {
+	/* Cet élément à une animation qui le fait passer au bleu quand on
+	place le souris dessus */
+	animation-name: top_10_hover;
+    animation-duration: 0.5s;
+
+    /* Permet de garder la couleur après l'animation */
+	background-color: rgba(59, 200, 231, 0.2);
+}
+
+.number_top_10 {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16.8px;
+
+	width: 17px;
+	margin-right: 10px;
+}
+
+.img_top_10 {
+	width: 60px;
+	margin-right: 16px;
+}
+
+.div_top_10_element_title_author {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16.8px;
+
+	width: 420px;
+}
+
+/* Comme le nom de l'auteur n'est pas en gras contrairement au titre */
+.author {
+	font-weight: 300;
+}
+
+.div_top_10_element_lenght {
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 16.8px;
+	color: #F0F5F9;
+}
+
+/* Artiste du moment */
+.div_artist_moment {
+	background-image: url(images/placeholder/Ninho.jpg);
+	background-size: cover;
+	margin-top: 150px;
+	padding-top: 256px;
+	padding-left: 65px;
+	padding-bottom: 71px;
+	max-width: 1440px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.div_artist_moment:hover {
+	cursor: pointer;
+}
+
+.div_artist_moment_elements {
+	margin-left: 10px;
+}
+
+#div_artist_moment_paragraph {
+	font-family: "Roboto";
+	font-weight: 900;
+	font-size: 36px;
+	line-height: 42.19px;
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+	margin-left: 100px;
+}
+
+/* Le top des playlist est géré par les DIV des caroussels */
+
+/* Les replay des émissions de radio */
+.div_replay_radio {
+
+}
+
+.div_replay_radio_images {
+	
 }

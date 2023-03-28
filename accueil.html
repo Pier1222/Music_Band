@@ -3,17 +3,24 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="accueil.css">
+
+        <!-- Permet de récupérer les polices "Urbanist", "Open Sans" et
+        "Roboto" de Google pour les utiliser dans le CSS" -->
+        <link href='https://fonts.googleapis.com/css?family=Urbanist' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
         <title>Music Band</title>
     </head>
+
+    <header> Barre en haut à faire </header>
+
     <body>
 
-        <!-- Penser à mettre la barre en haut -->
-
-        <div class="presentation">
-            <!--<img src="https://images.ctfassets.net/wcfotm6rrl7u/1rmxjzUn8UoCrRgbL4vfCW/264974c8b309ce2fdca89d952768a309/nokia_Headphones_E1200-og_image.jpg" alt="Une personne qui porte un casque audio pour illustrer le site">-->
-
-            <div class="title">
-                <span id="title_1">Music</span> <span id="title_2">Band</span><br>
+        <div class="div_presentation">
+            <div class="div_title">
+                <span class="blue_text">Music</span> Band
+                <br>
             </div>
             <p id="presentation_paragraphe">
                 Votre musique sans pub, partout. Seulement 9,99€/mois ensuite. <br>
@@ -22,12 +29,337 @@
                 Zapper à volonté. Plus de 50 M de chansons. <br>
                 Annulation à tout moment. <br>
             </p>
-            <div>
-                <a href="..." class="presentation_buttons"> Commencer l'écoute </a>
-                <a href="..." class="presentation_buttons"> S'abonner </a>
+            <div class="div_presentation_buttons">
+                <button onclick="location.href = 'https://vos-competences.com/login'" class="presentation_buttons" id="presentation_buttons_1"> COMMENCER L'ÉCOUTE </button>
+                <button onclick="location.href = 'https://fr.khanacademy.org/'" class="presentation_buttons" id="presentation_buttons_2"> S'ABONNER </button>
             </div>
         </div>
 
+
+        <!-- TODO: Remplacer les noms et les images par ceux récupérés via l'API Deezer -->
+        <div class="div_caroussel">
+            <div class="div_category_title div_caroussel_title">
+                Genre
+                <br>
+            </div>
+            <div class="div_caroussel_elements_list">
+                <div class="div_caroussel_one_element">
+                    <img src="images/placeholder/genres/POP.png" class="img_caroussel">
+                    <span class="text_caroussel">POP</span>
+                </div>
+                <div class="div_caroussel_one_element">
+                    <img src="images/placeholder/genres/Rap_Hip_Hop.png" class="img_caroussel">
+                    <span class="text_caroussel">Rap/Hip Hop</span>
+                </div>
+                <div class="div_caroussel_one_element">
+                    <img src="images/placeholder/genres/Rock.png" class="img_caroussel">
+                    <span class="text_caroussel">Rock</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TODO: Remplacer les informations (nom, image, durée, auteur) par ceux récupérés via l'API Deezer -->
+        <div class="div_top_10">
+            <!-- Morceaux les plus écoutés -->
+            <div class="div_top_10_table">
+                <div class="div_category_title div_top_10_title">
+                    <span class="blue_text">Top 10</span> des morceaux les plus écoutés
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">01</span>
+                    <img src="images/placeholder/TOP_10/S1.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        La kiffance <br>
+                        <span class="blue_text author">Naps</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">02</span>
+                    <img src="images/placeholder/TOP_10/S2.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        TDB <br>
+                        <span class="blue_text author">OBOY</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">03</span>
+                    <img src="images/placeholder/TOP_10/S3.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Petrouchka (feat. PLK) <br>
+                        <span class="blue_text author">Soso Maness</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">04</span>
+                    <img src="images/placeholder/TOP_10/S4.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Daddy chocolat <br>
+                        <span class="blue_text author">Koba LaD</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">05</span>
+                    <img src="images/placeholder/TOP_10/S5.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        STAY <br>
+                        <span class="blue_text author">The Kid Laroi</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">06</span>
+                    <img src="images/placeholder/TOP_10/S6.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Bad Habits <br>
+                        <span class="blue_text author">Ed Sheeran</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">07</span>
+                    <img src="images/placeholder/TOP_10/S7.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        INDUSTRY BABY <br>
+                        <span class="blue_text author">Lil Nas X</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">08</span>
+                    <img src="images/placeholder/TOP_10/S8.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Never Going Home <br>
+                        <span class="blue_text author">Kungs</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">09</span>
+                    <img src="images/placeholder/TOP_10/S9.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Mon soleil <br>
+                        <span class="blue_text author">Dadju</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">10</span>
+                    <img src="images/placeholder/TOP_10/S10.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Beggin <br>
+                        <span class="blue_text author">Maneskin</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+            </div>
+
+            <!-- Albums les plus écoutés -->
+            <div class="div_top_10_table">
+                <div class="div_category_title div_top_10_title">
+                    <span class="blue_text">Top 10</span> des albums les plus écoutés
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">01</span>
+                    <img src="images/placeholder/TOP_10/A1.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Donda <br>
+                        <span class="blue_text author">Kanye West</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">02</span>
+                    <img src="images/placeholder/TOP_10/A2.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Toujours nous-mêmes <br>
+                        <span class="blue_text author">Hornet La Frappe</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">03</span>
+                    <img src="images/placeholder/TOP_10/A3.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Enfantillages 4 <br>
+                        <span class="blue_text author">Aldebert</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">04</span>
+                    <img src="images/placeholder/TOP_10/A4.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        On n'enferme pas les oiseaux <br>
+                        <span class="blue_text author">Barbara Pravi</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">05</span>
+                    <img src="images/placeholder/TOP_10/A5.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        L'Étrange Histoire de Mr.Anderson <br>
+                        <span class="blue_text author">Laylow</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">06</span>
+                    <img src="images/placeholder/TOP_10/A6.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Happier Than Ever  <br>
+                        <span class="blue_text author">Billie Eillish</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">07</span>
+                    <img src="images/placeholder/TOP_10/A7.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Ta place dans ce monde <br>
+                        <span class="blue_text author">Gauvain Sers</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">08</span>
+                    <img src="images/placeholder/TOP_10/A8.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Cœur <br>
+                        <span class="blue_text author">Clara Luciani</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">09</span>
+                    <img src="images/placeholder/TOP_10/A9.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        If I Can't Have Love, I Want Power <br>
+                        <span class="blue_text author">Halsey</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+                <div class="div_top_10_element">
+                    <span class="number_top_10">10</span>
+                    <img src="images/placeholder/TOP_10/A10.png" class="img_top_10">
+                    <div class="div_top_10_element_title_author">
+                        Human (Deluxe) <br>
+                        <span class="blue_text author">OneRepublic</span>
+                     </div>
+
+                    <div class="div_top_10_element_lenght">
+                        00:00
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TODO: Changer l'image de fond et pour ceux récupérés par l'API Deezer -->
+        <div class="div_artist_moment">
+            <div class="div_artist_moment_elements">
+                <svg width="100" height="150"> 
+                    <circle cx="40" cy="80" r="40" fill="#3BC8E7"/>
+                    <polygon points="35,65 35,95 55,80" fill="#FFFFFF"/>
+                    <vector>
+                </svg>
+                <p id="div_artist_moment_paragraph">
+                    Découvrez l'artiste du moment <br>
+                    NINHO
+                </p>
+            </div>
+        </div>
+
+        <!-- TODO: Remplacer les noms et les images par ceux récupérés via l'API Deezer -->
+        <div class="div_caroussel">
+            <div class="div_category_title div_caroussel_title">
+                <span class="blue_text">Le top</span> des playlists à venir découvrir ou redécouvrir
+                <br>
+            </div>
+            <div class="div_caroussel_elements_list">
+                <div class="div_caroussel_one_element">
+                    <img src="images/placeholder/Top_playlist/Chill_relax.png" class="img_caroussel">
+                    <span class="text_caroussel">Les titres du moment</span>
+                </div>
+                <div class="div_caroussel_one_element">
+                    <img src="images/placeholder/Top_playlist/Rapstars.png" class="img_caroussel">
+                    <span class="text_caroussel">Rapstars</span>
+                </div>
+                <div class="div_caroussel_one_element">
+                    <img src="images/placeholder/Top_playlist/Chill_relax.png" class="img_caroussel">
+                    <span class="text_caroussel">Chill relax</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="div_replay_radio">
+            <div class="div_category_title">
+                <span class="blue_text">Revivez</span> vos émissions de radio préférées
+            </div>
+            <div class="div_replay_radio_images">
+                <!-- Mettres les images ici -->
+            </div>
+        </div>
 
 
 
