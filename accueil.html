@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="accueil.css">
+        <link rel="stylesheet" type="text/css" href="CSS/accueil.css">
+        <link rel="stylesheet" type="text/css" href="CSS/accueil_820_px.css">
 
         <!-- Permet de récupérer les polices "Urbanist", "Open Sans" et
         "Roboto" de Google pour les utiliser dans le CSS" -->
@@ -13,355 +14,458 @@
         <title>Music Band</title>
     </head>
 
-    <header> Barre en haut à faire </header>
+    <div class="container">
 
-    <body>
+        <header> Barre en haut à faire </header>
 
-        <div class="div_presentation">
-            <div class="div_title">
-                <span class="blue_text">Music</span> Band
-                <br>
-            </div>
-            <p id="presentation_paragraphe">
-                Votre musique sans pub, partout. Seulement 9,99€/mois ensuite. <br>
-                Soumis à conditions. Des podcasts exclusifs. <br>
-                Des playlists sur mesure. faites des découvertes. <br>
-                Zapper à volonté. Plus de 50 M de chansons. <br>
-                Annulation à tout moment. <br>
-            </p>
-            <div class="div_presentation_buttons">
-                <button onclick="location.href = 'https://vos-competences.com/login'" class="presentation_buttons" id="presentation_buttons_1"> COMMENCER L'ÉCOUTE </button>
-                <button onclick="location.href = 'https://fr.khanacademy.org/'" class="presentation_buttons" id="presentation_buttons_2"> S'ABONNER </button>
-            </div>
-        </div>
-
-
-        <!-- TODO: Remplacer les noms et les images par ceux récupérés via l'API Deezer -->
-        <div class="div_caroussel">
-            <div class="div_category_title div_caroussel_title">
-                Genre
-                <br>
-            </div>
-            <div class="div_caroussel_elements_list">
-                <div class="div_caroussel_one_element">
-                    <img src="images/placeholder/genres/POP.png" class="img_caroussel">
-                    <span class="text_caroussel">POP</span>
+        <body>
+            <div class="div_presentation">
+                <div class="div_title">
+                    <span class="blue_text">Music</span> Band
+                    <br>
                 </div>
-                <div class="div_caroussel_one_element">
-                    <img src="images/placeholder/genres/Rap_Hip_Hop.png" class="img_caroussel">
-                    <span class="text_caroussel">Rap/Hip Hop</span>
-                </div>
-                <div class="div_caroussel_one_element">
-                    <img src="images/placeholder/genres/Rock.png" class="img_caroussel">
-                    <span class="text_caroussel">Rock</span>
+                <p id="presentation_paragraphe">
+                    Votre musique sans pub, partout. Seulement 9,99€/mois ensuite. <br>
+                    Soumis à conditions. Des podcasts exclusifs. <br>
+                    Des playlists sur mesure. faites des découvertes. <br>
+                    Zapper à volonté. Plus de 50 M de chansons. <br>
+                    Annulation à tout moment. <br>
+                </p>
+                <div class="div_presentation_buttons">
+                    <button onclick="location.href = 'https://vos-competences.com/login'" class="general_button blue_button presentation_buttons"> COMMENCER L'ÉCOUTE </button>
+                    <button onclick="location.href = 'https://fr.khanacademy.org/'" class="general_button transparent_button presentation_buttons"> S'ABONNER </button>
                 </div>
             </div>
-        </div>
 
-        <!-- TODO: Remplacer les informations (nom, image, durée, auteur) par ceux récupérés via l'API Deezer -->
-        <div class="div_top_10">
-            <!-- Morceaux les plus écoutés -->
-            <div class="div_top_10_table">
-                <div class="div_category_title div_top_10_title">
-                    <span class="blue_text">Top 10</span> des morceaux les plus écoutés
+
+            <!-- TODO: Remplacer les noms et les images par ceux récupérés via l'API Deezer -->
+            <div class="div_caroussel">
+                <div class="div_category_title div_caroussel_title">
+                    Genre
+                    <br>
                 </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">01</span>
-                    <img src="images/placeholder/TOP_10/S1.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        La kiffance <br>
-                        <span class="blue_text author">Naps</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
+                <div class="div_caroussel_elements_list">
+                    <div class="div_caroussel_one_element">
+                        <img src="images/placeholder/genres/POP.png" class="img_caroussel">
+                        <span class="text_caroussel">POP</span>
+                    </div>
+                    <div class="div_caroussel_one_element">
+                        <img src="images/placeholder/genres/Rap_Hip_Hop.png" class="img_caroussel">
+                        <span class="text_caroussel">Rap/Hip Hop</span>
+                    </div>
+                    <div class="div_caroussel_one_element">
+                        <img src="images/placeholder/genres/Rock.png" class="img_caroussel">
+                        <span class="text_caroussel">Rock</span>
                     </div>
                 </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">02</span>
-                    <img src="images/placeholder/TOP_10/S2.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        TDB <br>
-                        <span class="blue_text author">OBOY</span>
-                     </div>
+            </div>
 
-                    <div class="div_top_10_element_lenght">
-                        00:00
+            <!-- TODO: Remplacer les informations (nom, image, durée, auteur) par ceux récupérés via l'API Deezer -->
+            <div class="div_top_10">
+                <!-- Morceaux les plus écoutés -->
+                <div class="div_top_10_table">
+                    <div class="div_category_title div_top_10_title">
+                        <span class="blue_text">Top 10</span> des morceaux les plus écoutés
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">01</span>
+                        <img src="images/placeholder/TOP_10/S1.png" class="img_music">
+                        <div class="div_music_title_author">
+                            La kiffance <br>
+                            <span class="blue_text author">Naps</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">02</span>
+                        <img src="images/placeholder/TOP_10/S2.png" class="img_music">
+                        <div class="div_music_title_author">
+                            TDB <br>
+                            <span class="blue_text author">OBOY</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">03</span>
+                        <img src="images/placeholder/TOP_10/S3.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Petrouchka (feat. PLK) <br>
+                            <span class="blue_text author">Soso Maness</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">04</span>
+                        <img src="images/placeholder/TOP_10/S4.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Daddy chocolat <br>
+                            <span class="blue_text author">Koba LaD</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">05</span>
+                        <img src="images/placeholder/TOP_10/S5.png" class="img_music">
+                        <div class="div_music_title_author">
+                            STAY <br>
+                            <span class="blue_text author">The Kid Laroi</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">06</span>
+                        <img src="images/placeholder/TOP_10/S6.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Bad Habits <br>
+                            <span class="blue_text author">Ed Sheeran</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">07</span>
+                        <img src="images/placeholder/TOP_10/S7.png" class="img_music">
+                        <div class="div_music_title_author">
+                            INDUSTRY BABY <br>
+                            <span class="blue_text author">Lil Nas X</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">08</span>
+                        <img src="images/placeholder/TOP_10/S8.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Never Going Home <br>
+                            <span class="blue_text author">Kungs</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">09</span>
+                        <img src="images/placeholder/TOP_10/S9.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Mon soleil <br>
+                            <span class="blue_text author">Dadju</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">10</span>
+                        <img src="images/placeholder/TOP_10/S10.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Beggin <br>
+                            <span class="blue_text author">Maneskin</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
                     </div>
                 </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">03</span>
-                    <img src="images/placeholder/TOP_10/S3.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Petrouchka (feat. PLK) <br>
-                        <span class="blue_text author">Soso Maness</span>
-                     </div>
 
-                    <div class="div_top_10_element_lenght">
-                        00:00
+                <!-- Albums les plus écoutés -->
+                <div class="div_top_10_table">
+                    <div class="div_category_title div_top_10_title">
+                        <span class="blue_text">Top 10</span> des albums les plus écoutés
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">01</span>
+                        <img src="images/placeholder/TOP_10/A1.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Donda <br>
+                            <span class="blue_text author">Kanye West</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">02</span>
+                        <img src="images/placeholder/TOP_10/A2.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Toujours nous-mêmes <br>
+                            <span class="blue_text author">Hornet La Frappe</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">03</span>
+                        <img src="images/placeholder/TOP_10/A3.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Enfantillages 4 <br>
+                            <span class="blue_text author">Aldebert</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">04</span>
+                        <img src="images/placeholder/TOP_10/A4.png" class="img_music">
+                        <div class="div_music_title_author">
+                            On n'enferme pas les oiseaux <br>
+                            <span class="blue_text author">Barbara Pravi</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">05</span>
+                        <img src="images/placeholder/TOP_10/A5.png" class="img_music">
+                        <div class="div_music_title_author">
+                            L'Étrange Histoire de Mr.Anderson <br>
+                            <span class="blue_text author">Laylow</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">06</span>
+                        <img src="images/placeholder/TOP_10/A6.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Happier Than Ever  <br>
+                            <span class="blue_text author">Billie Eillish</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">07</span>
+                        <img src="images/placeholder/TOP_10/A7.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Ta place dans ce monde <br>
+                            <span class="blue_text author">Gauvain Sers</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">08</span>
+                        <img src="images/placeholder/TOP_10/A8.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Cœur <br>
+                            <span class="blue_text author">Clara Luciani</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">09</span>
+                        <img src="images/placeholder/TOP_10/A9.png" class="img_music">
+                        <div class="div_music_title_author">
+                            If I Can't Have Love, I Want Power <br>
+                            <span class="blue_text author">Halsey</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
+                    </div>
+                    <div class="div_top_10_element div_music_element">
+                        <span class="number_top_10">10</span>
+                        <img src="images/placeholder/TOP_10/A10.png" class="img_music">
+                        <div class="div_music_title_author">
+                            Human (Deluxe) <br>
+                            <span class="blue_text author">OneRepublic</span>
+                         </div>
+
+                        <div class="div_music_lenght">
+                            00:00
+                        </div>
                     </div>
                 </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">04</span>
-                    <img src="images/placeholder/TOP_10/S4.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Daddy chocolat <br>
-                        <span class="blue_text author">Koba LaD</span>
-                     </div>
+            </div>
 
-                    <div class="div_top_10_element_lenght">
-                        00:00
+            <!-- TODO: Changer l'image de fond et pour ceux récupérés par l'API Deezer -->
+            <div class="div_artist_moment">
+                <div class="div_artist_moment_elements">
+                    <svg width="100" height="150"> 
+                        <circle cx="40" cy="80" r="40" fill="#3BC8E7"/>
+                        <polygon points="35,65 35,95 55,80" fill="#FFFFFF"/>
+                    </svg>
+                    <p id="div_artist_moment_paragraph">
+                        Découvrez l'artiste du moment <br>
+                        NINHO
+                    </p>
+                </div>
+            </div>
+
+            <!-- TODO: Remplacer les noms et les images par ceux récupérés via l'API Deezer -->
+            <div class="div_caroussel">
+                <div class="div_category_title div_caroussel_title">
+                    <span class="blue_text">Le top</span> des playlists à venir découvrir ou redécouvrir
+                    <br>
+                </div>
+                <div class="div_caroussel_elements_list">
+                    <div class="div_caroussel_one_element">
+                        <img src="images/placeholder/top_playlist/Chill_relax.png" class="img_caroussel">
+                        <span class="text_caroussel">Les titres du moment</span>
+                    </div>
+                    <div class="div_caroussel_one_element">
+                        <img src="images/placeholder/top_playlist/Rapstars.png" class="img_caroussel">
+                        <span class="text_caroussel">Rapstars</span>
+                    </div>
+                    <div class="div_caroussel_one_element">
+                        <img src="images/placeholder/top_playlist/Chill_relax.png" class="img_caroussel">
+                        <span class="text_caroussel">Chill relax</span>
                     </div>
                 </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">05</span>
-                    <img src="images/placeholder/TOP_10/S5.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
+            </div>
+
+            <div class="div_replay_radio">
+                <div class="div_category_title div_radio_replay_title">
+                    <span class="blue_text">Revivez</span> vos émissions de radio préférées
+                </div>
+                <div class="div_replay_radio_images">
+                    <img src="images/placeholder/radio_replay/Grosses_tetes.jpg" class="img_replay_radio">
+                    <img src="images/placeholder/radio_replay/Hondelatte_raconte.jpg" class="img_replay_radio">
+                    <img src="images/placeholder/radio_replay/Moment_meurice.jpg" class="img_replay_radio">
+                    <img src="images/placeholder/radio_replay/Affaires_sensibles.jpg" class="img_replay_radio">
+                </div>
+            </div>
+
+
+
+        </body>
+
+        <footer>
+            <div class="footer_info">
+                <div class="footer_info_general">
+                    <div class="footer_info_general_titre">
+                        <img src="images/Logos/Logo_Music_Band.png" class="img_info_general_titre">
+                        <div class="div_info_general_name">
+                            Music Band
+                            <span id="info_general_slogan">La musique au bout des doigts</span>
+                        </div>
+                    </div>
+
+                    <p id="info_general_paragraphe">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed ante sit amet mi fermentum accumsan. Nulla tristique, lorem eget accumsan efficitur, enim ipsum venenatis massa, mattis eleifend dui nibh sed sem. Vivamus nec quam turpis. Integer auctor leo at convallis malesuada. Praesent cursus feugiat ligula et tristique. Vivamus in velit nec nibh venenatis semper id eu ligula. Nullam dignissim vehicula tempor. Quisque a elementum purus. Maecenas condimentum arcu non nulla feugiat pharetra. Nunc aliquam enim augue, ultricies porta nulla maximus sed.
+                        </p>
+
+                </div>
+
+                <div class="footer_info_newsletters">
+                    <div class="div_category_title div_footer_title">
+                            Inscrivez-vous à la Newsletter
+                    </div>
+
+                    <p id="footer_paragraphe">Abonnez-vous à notre newsletter et recevez les dernières mises à jours et offres.</p>
+
+                    <form action="#" method="post" class="form_info_newsletters">
+                        <input 
+                            type="text"
+                            class="newsletter_input" 
+                            id="newsletter_name" 
+                            placeholder="Entrez votre nom"
+                            required>
+                        <input 
+                            type="email"
+                            class="newsletter_input" 
+                            id="newsletter_email" 
+                            placeholder="Entrez votre email"
+                            required>
+                        <input type="submit" value="INSCRIVEZ-VOUS" class="general_button blue_button" id="newsletter_button"/>
+                    </form>
+                </div>
+
+                <div class="footer_info_contact">
+                    <div class="div_category_title div_footer_title">
+                        Nous contacter
+                    </div>
+
+                    <p id="footer_paragraphe">Vous souhaitez nous contacter <br>
+                    Plusieurs solutions s'offrent à vous.</p>
+
+                    <div class="div_info_contact_elements_group">
+                        <div class="div_info_contact_one_element">
+                            <img src="images/Logos/Logo_phone.png" class="img_contact">
+                            <div class="div_info_contact_element_text">
+                                Par téléphone au:
+                                <span class="info_contact_element_value blue_text">03 89 87 85 86</span>
+                            </div>
+                        </div>
+                        <div class="div_info_contact_one_element">
+                            <img src="images/Logos/Logo_mail.png" class="img_contact">
+                            <div class="div_info_contact_element_text">
+                                Par email au:  
+                                <span class="info_contact_element_value blue_text">contact[@]musicband.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="div_music_element footer_player">
+                <div class="div_player_info">
+                    <img src="images/placeholder/TOP_10/S5.png" class="img_music">
+                    <div class="div_music_title_author">
                         STAY <br>
                         <span class="blue_text author">The Kid Laroi</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
+                        </div>
+                    <div class="div_music_lenght">
                         00:00
                     </div>
                 </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">06</span>
-                    <img src="images/placeholder/TOP_10/S6.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Bad Habits <br>
-                        <span class="blue_text author">Ed Sheeran</span>
-                     </div>
+                <div>
+                    <svg width="70" height="100" id="svg_music_previous"> 
+                        <rect x="28" y=40 width="3" height="17" fill="#FFFFFF"/>
+                        <polygon points="45,38 45,58 30,48" fill="#FFFFFF"/>
+                     </svg>
 
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">07</span>
-                    <img src="images/placeholder/TOP_10/S7.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        INDUSTRY BABY <br>
-                        <span class="blue_text author">Lil Nas X</span>
-                     </div>
+                    <svg width="90" height="100" id="svg_music_play"> 
+                        <circle cx="40" cy="50" r="40" fill="#3BC8E7"/>
+                        <polygon points="35,35 35,65 55,50" fill="#FFFFFF"/>
+                    </svg>
 
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">08</span>
-                    <img src="images/placeholder/TOP_10/S8.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Never Going Home <br>
-                        <span class="blue_text author">Kungs</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">09</span>
-                    <img src="images/placeholder/TOP_10/S9.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Mon soleil <br>
-                        <span class="blue_text author">Dadju</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">10</span>
-                    <img src="images/placeholder/TOP_10/S10.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Beggin <br>
-                        <span class="blue_text author">Maneskin</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
+                    <svg width="70" height="100" id="svg_music_next"> 
+                        <rect x="35" y=40 width="3" height="17" fill="#FFFFFF"/>
+                        <polygon points="20,38 20,58 35,48" fill="#FFFFFF"/>
+                    </svg>
                 </div>
             </div>
-
-            <!-- Albums les plus écoutés -->
-            <div class="div_top_10_table">
-                <div class="div_category_title div_top_10_title">
-                    <span class="blue_text">Top 10</span> des albums les plus écoutés
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">01</span>
-                    <img src="images/placeholder/TOP_10/A1.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Donda <br>
-                        <span class="blue_text author">Kanye West</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">02</span>
-                    <img src="images/placeholder/TOP_10/A2.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Toujours nous-mêmes <br>
-                        <span class="blue_text author">Hornet La Frappe</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">03</span>
-                    <img src="images/placeholder/TOP_10/A3.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Enfantillages 4 <br>
-                        <span class="blue_text author">Aldebert</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">04</span>
-                    <img src="images/placeholder/TOP_10/A4.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        On n'enferme pas les oiseaux <br>
-                        <span class="blue_text author">Barbara Pravi</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">05</span>
-                    <img src="images/placeholder/TOP_10/A5.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        L'Étrange Histoire de Mr.Anderson <br>
-                        <span class="blue_text author">Laylow</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">06</span>
-                    <img src="images/placeholder/TOP_10/A6.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Happier Than Ever  <br>
-                        <span class="blue_text author">Billie Eillish</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">07</span>
-                    <img src="images/placeholder/TOP_10/A7.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Ta place dans ce monde <br>
-                        <span class="blue_text author">Gauvain Sers</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">08</span>
-                    <img src="images/placeholder/TOP_10/A8.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Cœur <br>
-                        <span class="blue_text author">Clara Luciani</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">09</span>
-                    <img src="images/placeholder/TOP_10/A9.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        If I Can't Have Love, I Want Power <br>
-                        <span class="blue_text author">Halsey</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-                <div class="div_top_10_element">
-                    <span class="number_top_10">10</span>
-                    <img src="images/placeholder/TOP_10/A10.png" class="img_top_10">
-                    <div class="div_top_10_element_title_author">
-                        Human (Deluxe) <br>
-                        <span class="blue_text author">OneRepublic</span>
-                     </div>
-
-                    <div class="div_top_10_element_lenght">
-                        00:00
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TODO: Changer l'image de fond et pour ceux récupérés par l'API Deezer -->
-        <div class="div_artist_moment">
-            <div class="div_artist_moment_elements">
-                <svg width="100" height="150"> 
-                    <circle cx="40" cy="80" r="40" fill="#3BC8E7"/>
-                    <polygon points="35,65 35,95 55,80" fill="#FFFFFF"/>
-                    <vector>
-                </svg>
-                <p id="div_artist_moment_paragraph">
-                    Découvrez l'artiste du moment <br>
-                    NINHO
-                </p>
-            </div>
-        </div>
-
-        <!-- TODO: Remplacer les noms et les images par ceux récupérés via l'API Deezer -->
-        <div class="div_caroussel">
-            <div class="div_category_title div_caroussel_title">
-                <span class="blue_text">Le top</span> des playlists à venir découvrir ou redécouvrir
-                <br>
-            </div>
-            <div class="div_caroussel_elements_list">
-                <div class="div_caroussel_one_element">
-                    <img src="images/placeholder/Top_playlist/Chill_relax.png" class="img_caroussel">
-                    <span class="text_caroussel">Les titres du moment</span>
-                </div>
-                <div class="div_caroussel_one_element">
-                    <img src="images/placeholder/Top_playlist/Rapstars.png" class="img_caroussel">
-                    <span class="text_caroussel">Rapstars</span>
-                </div>
-                <div class="div_caroussel_one_element">
-                    <img src="images/placeholder/Top_playlist/Chill_relax.png" class="img_caroussel">
-                    <span class="text_caroussel">Chill relax</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="div_replay_radio">
-            <div class="div_category_title">
-                <span class="blue_text">Revivez</span> vos émissions de radio préférées
-            </div>
-            <div class="div_replay_radio_images">
-                <!-- Mettres les images ici -->
-            </div>
-        </div>
-
-
-
-    </body>
+            </footer>
+    </div>
 </html>

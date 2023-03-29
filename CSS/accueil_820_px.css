@@ -1,0 +1,39 @@
+@media all and (max-width: 820px) {
+    body {
+        background-color: blue;
+    }
+
+    .div_presentation {
+        background-position: center;
+    }
+
+    .div_artist_moment {
+        background-position: center;
+    }
+
+    /*.div_replay_radio {
+        margin: auto;
+    }*/
+
+
+    .footer_info {
+        margin: auto;
+    }
+
+    .footer_info_general {
+        margin: auto;
+    }
+
+    .footer_info_newsletters {
+        margin: auto;
+    }
+
+    .footer_info_contact {
+        margin: auto;
+    }
+
+    .footer_player {
+        flex-direction: column-reverse;
+    }
+
+}
