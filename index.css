@@ -1,9 +1,9 @@
 /* Intègre des boîtes rouges autour de chaque DIV */
-/*
+
 * {
   	box-shadow: 0 0 0 3px red inset;
 }
-*/
+
 
 html {
 	display: flex;
