@@ -1,9 +1,9 @@
 /* Intègre des boîtes rouges autour de chaque DIV */
-
+/*
 * {
   	box-shadow: 0 0 0 3px red inset;
 }
-
+*/
 
 html {
 	display: flex;
@@ -215,9 +215,13 @@ svg {
 	max-width: 1440px;
 }
 
-#svg_navigation_bar {
+.div_navigation_bar_svg {
+	width: 50px;
+	height: 50px;
 	margin-right: 23px;
+}
 
+#svg_navigation_bar {
 	cursor: pointer;
 }
 
@@ -350,7 +354,11 @@ même taille sur la même ligne */
 
 /* Artiste du moment */
 .div_artist_moment {
-	background-image: url(images/placeholder/Ninho.jpg);
+	/*background-image: url(images/placeholder/Ninho.jpg);*/
+
+	/* Pour essayer d'avoir une image un peu près centré */
+	background-position-y: -200px;
+
 	background-size: cover;
 	margin-top: 150px;
 	padding-top: 256px;
@@ -519,14 +527,27 @@ même taille sur la même ligne */
 	align-items: center;
 }
 
+.div_footer_player_buttons {
+	display: flex;
+	flex-direction: row;
+}
+
+/* TODO: Gérer les DIV et les SVG pour changer la taille des éléments selon la taille de l'écran */
+.div_footer_player_arrow {
+
+}
+
+.div_footer_player_play {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
 #svg_music_previous {
 	cursor: pointer;
 }
 
 #svg_music_play {
 	cursor: pointer;
-	margin-left: 5px;
-	margin-right: 5px;
 }
 
 #svg_music_next {
@@ -552,6 +573,11 @@ même taille sur la même ligne */
 
 	.input_text::placeholder {
 		font-size: 20px;
+	}
+
+	.div_navigation_bar_svg {
+		width: 70px;
+		height: 70px;
 	}
 
 	#img_profil {
@@ -606,6 +632,12 @@ même taille sur la même ligne */
 
     #search_music_name {
     	width: 200px;
+    	font-size: 16px;
+    	padding-left: 15px;
+    }
+
+    #search_music_name::placeholder {
+    	font-size: 16px;
     }
 
     .div_presentation {
