@@ -2,8 +2,6 @@
 
 //FALSE pour ne pas afficher les warnings PHP pour l'utiliser et TRUE pour montrer ces erreurs dans le cadre de débogage
 $show_PHP_warnings = true;
-header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
-
 
 //Certificat qui permet de faire fonctionner les requêtes cURL
 $certificate = "C:\wamp64\cacert.pem";
@@ -137,32 +135,24 @@ function getTimeMinutes($timeSeconds) {
 <html>
     <head>
         <meta charset="utf-8">
-
-        <!--
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        -->
-        
-        <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=1.0, minimum-scale=0.86">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86">
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <script type="text/javascript" charset="UTF-8" src="index.js"/>
 
 
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <script type="text/javascript" charset="UTF-8" src="index.js"></script>
+        <!-- Slick -->
+        <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+
+        <script src="/slick/slick.min/js"/>
+
+
 
         <!-- Permet de récupérer les polices "Urbanist", "Open Sans" et
         "Roboto" de Google pour les utiliser dans le CSS" -->
         <link href='https://fonts.googleapis.com/css?family=Urbanist' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-        <!-- Slick -->
-        <link rel="stylesheet" type="text/css" href="/lib/slick/slick.css"/>
-            <!-- Thème personnalisé que j'ai modifié et thème par défaut -->
-        <link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css"/>
-        <!-- <link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme-default.css"/> -->
-
-        <script type="text/javascript" charset="UTF-8" src="/lib/jquery-3.6.4.min.js"></script>
-        <script type="text/javascript" charset="UTF-8" src="/lib/slick/slick.min.js"></script>
 
         <title>Music Band</title>
     </head>
@@ -171,21 +161,20 @@ function getTimeMinutes($timeSeconds) {
 
         <header>
             <div class="div_navigation_bar">
-                <div class="div_navigation_bar_1">
-                    <div class="div_navigation_bar_svg">
-                        <svg width="100%" height="100%" id="svg_navigation_bar">
-                            <rect x="0" y="0" width="100%" height="100%" fill="#3BC8E7"/>
-                            <rect x="30%" y="36%" width="40%" height="4%" fill="#FFFFFF"/>
-                            <rect x="30%" y="46%" width="40%" height="4%" fill="#FFFFFF"/>
-                            <rect x="30%" y="56%" width="28%" height="4%" fill="#FFFFFF"/>
-                        </svg>
-                    </div>
-                    <div class="site_name_slogan">
-                        <img src="images/Logos/Logo_Music_Band_Blue.png" class="img_logo">
-                        <div class="div_info_general_name">
-                            Music Band
-                            <span id="info_general_slogan">La musique au bout des doigts</span>
-                        </div>
+                <div class="div_navigation_bar_svg">
+                    <svg width="100%" height="100%" id="svg_navigation_bar">
+                        <rect x="0" y="0" width="100%" height="100%" fill="#3BC8E7"/>
+                        <rect x="30%" y="36%" width="40%" height="4%" fill="#FFFFFF"/>
+                        <rect x="30%" y="46%" width="40%" height="4%" fill="#FFFFFF"/>
+                        <rect x="30%" y="56%" width="28%" height="4%" fill="#FFFFFF"/>
+                    </svg>
+                </div>
+                <!-- Le bouton bleu avec les barres blanches -->
+                <div class="site_name_slogan">
+                    <img src="images/Logos/Logo_Music_Band_Blue.png" class="img_logo">
+                    <div class="div_info_general_name">
+                        Music Band
+                        <span id="info_general_slogan">La musique au bout des doigts</span>
                     </div>
                 </div>
 
@@ -194,31 +183,30 @@ function getTimeMinutes($timeSeconds) {
                 <div class="div_navigation_bar_empty_space">
                 </div>
 
-                <div class="div_navigation_bar_2">
-                    <form action="#" method="post" class="form_search_music">
-                        <input 
-                            type="text"
-                            class="input_text" 
-                            id="search_music_name" 
-                            placeholder="Recherchez, écoutez..."
-                            required>
+                <form action="#" method="post" class="form_search_music">
+                    <input 
+                        type="text"
+                        class="input_text" 
+                        id="search_music_name" 
+                        placeholder="Recherchez, écoutez..."
+                        required>
 
-                        <input 
-                            type="submit"
-                            value="" 
-                            id="form_search_music_button"/>
-                    </form>
+                    <input 
+                        type="submit"
+                        value="" 
+                        id="form_search_music_button"/>
+                </form>
 
-                    <div class="div_navigation_bar_profil">
-                        <img src="images/placeholder/Profil_Iron_Man.jpg" id="img_profil">
-                        Alain
-                    </div>
+                <div class="div_navigation_bar_profil">
+                    <img src="images/placeholder/Profil_Iron_Man.jpg" id="img_profil">
+                    Alain
                 </div>
                 
+
             </div>
         </header>
 
-        <body onload="initialisation()">
+        <body>
             <div class="div_presentation">
                 <div class="div_title">
                     <span class="blue_text">Music</span> Band
@@ -240,13 +228,11 @@ function getTimeMinutes($timeSeconds) {
 
             <!-- Genres -->
             <div class="div_caroussel">
-                <div class="div_category_title div_caroussel_title" id="genre_title">
+                <div class="div_category_title div_caroussel_title">
                     Genre
                     <br>
                 </div>
-
-
-                <div class="div_caroussel_elements_list" id="caroussel_genre">
+                <div class="div_caroussel_elements_list">
                     <?php if(is_null($array_genres)) { ?>
                         <div class="div_error_curl">
                             Erreur: Liste des genres non disponible
@@ -254,7 +240,7 @@ function getTimeMinutes($timeSeconds) {
                     <?php }  else {
                         for ($i=0; $i < count($array_genres); $i++) { ?>
                             <div class="div_caroussel_one_element">
-                                <img src=<?php echo($array_genres[$i]["picture_big"]) ?> class="img_caroussel" onclick="test()">
+                                <img src=<?php echo($array_genres[$i]["picture_big"]) ?> class="img_caroussel">
                                 <span class="text_caroussel"><?php echo($array_genres[$i]["name"]) ?></span>
                             </div>
                         <?php }
@@ -278,9 +264,8 @@ function getTimeMinutes($timeSeconds) {
                             <div class="div_top_10_element div_music_element">
                                 <span class="number_top_10"><?php echo(str_pad(($i + 1), 2, "0", STR_PAD_LEFT)); ?></span>
                                 <img src=<?php echo($array_top_10_singles[$i]["artist"]["picture"]); ?> class="img_music">
-
                                 <div class="div_music_title_author">
-                                    <?php echo($array_top_10_singles[$i]["title_short"]) ?> <br>
+                                    <?php echo($array_top_10_singles[$i]["title"]) ?> <br>
                                     <span class="blue_text author"><?php echo($array_top_10_singles[$i]["artist"]["name"]); ?></span>
                                 </div>
 
@@ -471,33 +456,23 @@ function getTimeMinutes($timeSeconds) {
                 </div>
                 <div class="div_footer_player_buttons">
                     <div class="div_footer_player_arrow">
-                        <svg width="100%" height="100%" id="svg_music_previous" viewBox="0 0 100 100"> 
-                            <rect x="40%" y="40%" width="4.29%" height="17%" fill="#FFFFFF"/> 
-                            <polygon points="64.29,38 64.29,58 42.86,48" fill="#FFFFFF"/>
-                            <!-- Sans le viewbow et avec la taille originale
+                        <svg width="70" height="100" id="svg_music_previous"> 
+                            <rect x="28" y="40" width="3" height="17" fill="#FFFFFF"/>
                             <polygon points="45,38 45,58 30,48" fill="#FFFFFF"/>
-                            -->
                         </svg>
                     </div>
 
                     <div class="div_footer_player_play">
-                        <svg width="100%" height="100%" id="svg_music_play" viewBox="0 0 100 100"> 
-                            <circle cx="50%" cy="50%" r="44.17%" fill="#3BC8E7"/>
-                            <polygon points="43.75,35 43.75,65 68.75,50" fill="#FFFFFF"/>
-
-                            <!-- Sans le viewbox et avec la taille originale
+                        <svg width="90" height="100" id="svg_music_play"> 
+                            <circle cx="40" cy="50" r="40" fill="#3BC8E7"/>
                             <polygon points="35,35 35,65 55,50" fill="#FFFFFF"/>
-                            -->
                         </svg>
                     </div>
 
                     <div class="div_footer_player_arrow">
-                        <svg width="100%" height="100%" id="svg_music_next" viewBox="0 0 100 100"> 
-                            <rect x="50%" y="40%" width="4.29%" height="17%" fill="#FFFFFF"/>
-                            <polygon points="28.57,38 28.57,58 50,48" fill="#FFFFFF"/>
-                            <!-- Sans le viewbox et avec la taille originale
+                        <svg width="70" height="100" id="svg_music_next"> 
+                            <rect x="35" y="40" width="3" height="17" fill="#FFFFFF"/>
                             <polygon points="20,38 20,58 35,48" fill="#FFFFFF"/>
-                            -->
                         </svg>
                     </div>
                 </div>
