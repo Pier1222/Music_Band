@@ -427,6 +427,7 @@ même taille sur la même ligne */
 
 .div_music_lenght {
 	font-weight: 300;
+	margin-left: 10px;
 
 	color: #F0F5F9;
 }
@@ -601,10 +602,13 @@ même taille sur la même ligne */
 }
 
 /* Le lecteur en bas de page */
-.footer_player {
+#footer_player {
 	background-color: #111013;
 	max-width: 100%;
 	justify-content: center;
+
+	/* Caché par défaut, devient visible quand on choisit une musique dans le top 5 */
+	visibility: hidden;
 }
 
 .div_player_info {
@@ -768,6 +772,10 @@ même taille sur la même ligne */
 		text-align: center;
 	}
 
+	.div_music_lenght {
+		margin-left: 0px;
+	}
+
     .div_artist_moment {
     	/* Le y est déjà géré par la régle générale */
         background-position-x: center;
@@ -810,7 +818,7 @@ même taille sur la même ligne */
     	width: 60px;
     }
 
-    .footer_player {
+    #footer_player {
         flex-direction: column-reverse;
     }
 

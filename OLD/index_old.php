@@ -1,9 +1,10 @@
 <?php
 
-include 'curl_function.php';
+//FALSE pour ne pas afficher les warnings PHP pour l'utiliser et TRUE pour montrer ces erreurs dans le cadre de débogage
+$show_PHP_warnings = true;
 
-//Test de gestion de cookies... Qui ne marche pas vraiment
-header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
+//Certificat qui permet de faire fonctionner les requêtes cURL
+$certificate = "C:\wamp64\cacert.pem";
 
 if($show_PHP_warnings == false) {
     //Désactive les messages de warnings
@@ -25,7 +26,7 @@ $array_genres = getArrayDeezer("https://api.deezer.com/genre", $certificate, fal
 
 //Je sais que Deezer limite déjà le nombre de morceaux à 10 dans ses tops mais on ne sait jamais
 $array_top_10_singles = getArrayDeezer("https://api.deezer.com/chart/0/tracks?limit=".$limits_TOP_10, $certificate, false, $show_PHP_warnings)["data"];
-//print_r($array_top_10_singles);
+//print_r($array_top_10_single[0]);
 
 //Il n'y a pas de durée donnée pour les albums, il faut donc chercher la liste des albums associés pour additionner leurs durées
 $array_top_10_albums = getArrayDeezer("https://api.deezer.com/chart/0/albums?limit=".$limits_TOP_10, $certificate, false, $show_PHP_warnings)["data"];
@@ -57,7 +58,68 @@ $array_top_playlists = getArrayDeezer("https://api.deezer.com/chart/0/playlists?
 //Les moments radios préférés
 $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcasts?limit=".$limit_radio_replays, $certificate, false, $show_PHP_warnings)["data"];
 
+function getArrayDeezer($request, $certificate, $debug_echo, $show_PHP_errors) {
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $request,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
 
+
+        /* Solution pour éviter "cURL Error #:SSL certificate problem:
+        unable to get local issuer certificate", même si la solution
+        préconisée est de référencer le certificat dans curl.cainfo et
+        openssl.cafile dans PHP.ini mais cela ne fonctionne pas pour moi
+        */
+        CURLOPT_CAINFO => $certificate,
+        CURLOPT_CAPATH => $certificate,
+
+        //Autre solution mais mauvaise niveau sécurité
+        /*
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_SSL_VERIFYPEER => false,
+        */
+
+        /*
+        CURLOPT_HTTPHEADER => [
+            'Accept: application/json',
+            'Authorization: Bearer token',
+            'Content-Type: application/json'
+        ],
+        */
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        if($show_PHP_errors) {
+            echo "cURL Error '" . $request . "':" . $err;
+        }
+        return NULL;
+    } else {
+        //echo $response;
+
+        if($debug_echo) {
+            echo($request . ":");
+            var_dump(json_decode($response));
+            echo "\n\n";
+        }
+        
+
+        //Récupère la réponse sous forme de tableau
+        $array_response = json_decode($response, true);
+
+        return $array_response;
+    }
+}
 
 function getTimeMinutes($timeSeconds) {
     $nbMinuts  = intdiv($timeSeconds, 60);
@@ -73,36 +135,24 @@ function getTimeMinutes($timeSeconds) {
 <html>
     <head>
         <meta charset="utf-8">
-
-        <!--
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        -->
-        
-        <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=1.0, minimum-scale=0.86">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86">
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <script type="text/javascript" charset="UTF-8" src="index.js"/>
 
 
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <script type="text/javascript" charset="UTF-8" src="index.js"></script>
+        <!-- Slick -->
+        <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+
+        <script src="/slick/slick.min/js"/>
+
+
 
         <!-- Permet de récupérer les polices "Urbanist", "Open Sans" et
         "Roboto" de Google pour les utiliser dans le CSS" -->
         <link href='https://fonts.googleapis.com/css?family=Urbanist' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-        <!-- Slick -->
-        <link rel="stylesheet" type="text/css" href="/lib/slick/slick.css"/>
-            <!-- Thème personnalisé que j'ai modifié et thème par défaut -->
-        <link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css"/>
-        <!-- <link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme-default.css"/> -->
-
-        <!-- Deezer SDK -->
-        <!--<script type="text/javascript" src="https://e-cdn-files.dzcdn.net/js/min/dz.js"></script>-->
-
-
-        <script type="text/javascript" charset="UTF-8" src="/lib/jquery-3.6.4.min.js"></script>
-        <script type="text/javascript" charset="UTF-8" src="/lib/slick/slick.min.js"></script>
 
         <title>Music Band</title>
     </head>
@@ -111,21 +161,20 @@ function getTimeMinutes($timeSeconds) {
 
         <header>
             <div class="div_navigation_bar">
-                <div class="div_navigation_bar_1">
-                    <div class="div_navigation_bar_svg">
-                        <svg width="100%" height="100%" id="svg_navigation_bar">
-                            <rect x="0" y="0" width="100%" height="100%" fill="#3BC8E7"/>
-                            <rect x="30%" y="36%" width="40%" height="4%" fill="#FFFFFF"/>
-                            <rect x="30%" y="46%" width="40%" height="4%" fill="#FFFFFF"/>
-                            <rect x="30%" y="56%" width="28%" height="4%" fill="#FFFFFF"/>
-                        </svg>
-                    </div>
-                    <div class="site_name_slogan">
-                        <img src="images/Logos/Logo_Music_Band_Blue.png" class="img_logo">
-                        <div class="div_info_general_name">
-                            Music Band
-                            <span id="info_general_slogan">La musique au bout des doigts</span>
-                        </div>
+                <div class="div_navigation_bar_svg">
+                    <svg width="100%" height="100%" id="svg_navigation_bar">
+                        <rect x="0" y="0" width="100%" height="100%" fill="#3BC8E7"/>
+                        <rect x="30%" y="36%" width="40%" height="4%" fill="#FFFFFF"/>
+                        <rect x="30%" y="46%" width="40%" height="4%" fill="#FFFFFF"/>
+                        <rect x="30%" y="56%" width="28%" height="4%" fill="#FFFFFF"/>
+                    </svg>
+                </div>
+                <!-- Le bouton bleu avec les barres blanches -->
+                <div class="site_name_slogan">
+                    <img src="images/Logos/Logo_Music_Band_Blue.png" class="img_logo">
+                    <div class="div_info_general_name">
+                        Music Band
+                        <span id="info_general_slogan">La musique au bout des doigts</span>
                     </div>
                 </div>
 
@@ -134,31 +183,30 @@ function getTimeMinutes($timeSeconds) {
                 <div class="div_navigation_bar_empty_space">
                 </div>
 
-                <div class="div_navigation_bar_2">
-                    <form action="#" method="post" class="form_search_music">
-                        <input 
-                            type="text"
-                            class="input_text" 
-                            id="search_music_name" 
-                            placeholder="Recherchez, écoutez..."
-                            required>
+                <form action="#" method="post" class="form_search_music">
+                    <input 
+                        type="text"
+                        class="input_text" 
+                        id="search_music_name" 
+                        placeholder="Recherchez, écoutez..."
+                        required>
 
-                        <input 
-                            type="submit"
-                            value="" 
-                            id="form_search_music_button"/>
-                    </form>
+                    <input 
+                        type="submit"
+                        value="" 
+                        id="form_search_music_button"/>
+                </form>
 
-                    <div class="div_navigation_bar_profil">
-                        <img src="images/placeholder/Profil_Iron_Man.jpg" id="img_profil">
-                        Alain
-                    </div>
+                <div class="div_navigation_bar_profil">
+                    <img src="images/placeholder/Profil_Iron_Man.jpg" id="img_profil">
+                    Alain
                 </div>
                 
+
             </div>
         </header>
 
-        <body onload="initialisation()">
+        <body>
             <div class="div_presentation">
                 <div class="div_title">
                     <span class="blue_text">Music</span> Band
@@ -180,20 +228,18 @@ function getTimeMinutes($timeSeconds) {
 
             <!-- Genres -->
             <div class="div_caroussel">
-                <div class="div_category_title div_caroussel_title" id="genre_title">
+                <div class="div_category_title div_caroussel_title">
                     Genre
                     <br>
                 </div>
-
-
-                <div class="div_caroussel_elements_list" id="caroussel_genre">
+                <div class="div_caroussel_elements_list">
                     <?php if(is_null($array_genres)) { ?>
                         <div class="div_error_curl">
                             Erreur: Liste des genres non disponible
                         </div>
                     <?php }  else {
                         for ($i=0; $i < count($array_genres); $i++) { ?>
-                            <div class="div_caroussel_one_element" onclick="test()">
+                            <div class="div_caroussel_one_element">
                                 <img src=<?php echo($array_genres[$i]["picture_big"]) ?> class="img_caroussel">
                                 <span class="text_caroussel"><?php echo($array_genres[$i]["name"]) ?></span>
                             </div>
@@ -214,29 +260,18 @@ function getTimeMinutes($timeSeconds) {
                             <span class="blue_text">Top <?php echo(count($array_top_10_singles)) ?></span> des morceaux les plus écoutés
                         </div>
 
-                        <?php for ($i=0; $i < count($array_top_10_singles); $i++) { 
-                            $timeMinutesActu = getTimeMinutes($array_top_10_singles[$i]["duration"]); ?>
-
-                            <div class="div_top_10_element div_music_element" onclick=
-                            "changePlayer(
-                            '<?php echo($array_top_10_singles[$i]["artist"]["picture"]) ?>',
-                            '<?php echo($array_top_10_singles[$i]["title_short"]) ?>',
-                            '<?php echo($array_top_10_singles[$i]["artist"]["name"]) ?>',
-                            '<?php echo($timeMinutesActu) ?>',
-                            <?php echo($array_top_10_singles[$i]["id"]) ?>)">
-
+                        <?php for ($i=0; $i < count($array_top_10_singles); $i++) { ?>
+                            <div class="div_top_10_element div_music_element">
                                 <span class="number_top_10"><?php echo(str_pad(($i + 1), 2, "0", STR_PAD_LEFT)); ?></span>
                                 <img src=<?php echo($array_top_10_singles[$i]["artist"]["picture"]); ?> class="img_music">
-
                                 <div class="div_music_title_author">
-                                    <?php echo($array_top_10_singles[$i]["title_short"]) ?> <br>
+                                    <?php echo($array_top_10_singles[$i]["title"]) ?> <br>
                                     <span class="blue_text author"><?php echo($array_top_10_singles[$i]["artist"]["name"]); ?></span>
                                 </div>
 
                                 <div class="div_music_lenght">
-                                    <?php echo($timeMinutesActu); ?>
+                                    <?php echo(getTimeMinutes($array_top_10_singles[$i]["duration"])); ?>
                                 </div>
-
                             </div>
                         <?php }
                         } ?>
@@ -399,7 +434,7 @@ function getTimeMinutes($timeSeconds) {
                         <div class="div_info_contact_one_element">
                             <img src="images/Logos/Logo_mail.png" class="img_contact">
                             <div class="div_info_contact_element_text">
-                                Par email au:
+                                Par email au:  
                                 <span class="info_contact_element_value blue_text">contact[@]musicband.com</span>
                             </div>
                         </div>
@@ -408,49 +443,36 @@ function getTimeMinutes($timeSeconds) {
             </div>
 
 
-            <div class="div_music_element" id="footer_player">
+            <div class="div_music_element footer_player">
                 <div class="div_player_info">
-                    <img src="images/placeholder/TOP_10/S5.png" class="img_music" id="img_player">
+                    <img src="images/placeholder/TOP_10/S5.png" class="img_music">
                     <div class="div_music_title_author">
-                        <div id="div_title_player">STAY</div>
-                        <span class="blue_text author" id="span_author_player">The Kid Laroi</span>
-                    </div>
-                    <div class="div_music_lenght" id="div_lenght_player">
+                        STAY <br>
+                        <span class="blue_text author">The Kid Laroi</span>
+                        </div>
+                    <div class="div_music_lenght">
                         00:00
                     </div>
                 </div>
                 <div class="div_footer_player_buttons">
                     <div class="div_footer_player_arrow">
-                        <svg width="100%" height="100%" id="svg_music_previous" viewBox="0 0 100 100"> 
-                            <rect x="40%" y="40%" width="4.29%" height="17%" fill="#FFFFFF"/> 
-                            <polygon points="64.29,38 64.29,58 42.86,48" fill="#FFFFFF"/>
-                            <!-- Sans le viewbow et avec la taille originale
+                        <svg width="70" height="100" id="svg_music_previous"> 
+                            <rect x="28" y="40" width="3" height="17" fill="#FFFFFF"/>
                             <polygon points="45,38 45,58 30,48" fill="#FFFFFF"/>
-                            -->
                         </svg>
                     </div>
 
                     <div class="div_footer_player_play">
-                        <svg width="100%" height="100%" id="svg_music_play" viewBox="0 0 100 100" onclick="playOrPausePreview()"> 
-                            <circle cx="50%" cy="50%" r="44.17%" fill="#3BC8E7"/>
-                            <polygon points="43.75,35 43.75,65 68.75,50" fill="#FFFFFF" id="polygon_svg_music_play"/>
-
-                            <rect x="35%" y="25%" width="7%" height="50%" fill="#FFFFFF" id="rect_1_svg_music_play"/>
-                            <rect x="60%" y="25%" width="7%" height="50%" fill="#FFFFFF" id="rect_2_svg_music_play"/>
-
-                            <!-- Sans le viewbox et avec la taille originale
+                        <svg width="90" height="100" id="svg_music_play"> 
+                            <circle cx="40" cy="50" r="40" fill="#3BC8E7"/>
                             <polygon points="35,35 35,65 55,50" fill="#FFFFFF"/>
-                            -->
                         </svg>
                     </div>
 
                     <div class="div_footer_player_arrow">
-                        <svg width="100%" height="100%" id="svg_music_next" viewBox="0 0 100 100"> 
-                            <rect x="50%" y="40%" width="4.29%" height="17%" fill="#FFFFFF"/>
-                            <polygon points="28.57,38 28.57,58 50,48" fill="#FFFFFF"/>
-                            <!-- Sans le viewbox et avec la taille originale
+                        <svg width="70" height="100" id="svg_music_next"> 
+                            <rect x="35" y="40" width="3" height="17" fill="#FFFFFF"/>
                             <polygon points="20,38 20,58 35,48" fill="#FFFFFF"/>
-                            -->
                         </svg>
                     </div>
                 </div>
