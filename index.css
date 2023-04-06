@@ -507,7 +507,7 @@ même taille sur la même ligne */
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding-top: 43px;
-	padding-bottom: 60px;
+	padding-bottom: 20px;
 }
 
 .footer_info_general {
@@ -604,8 +604,14 @@ même taille sur la même ligne */
 /* Le lecteur en bas de page */
 #footer_player {
 	background-color: #111013;
-	max-width: 100%;
 	justify-content: center;
+
+
+	/* Permet à ce que le player soit fixé en bas de la page */
+    position: fixed; 
+    bottom:0%;
+    width:100%; 
+    max-width: 100%;
 
 	/* Caché par défaut, devient visible quand on choisit une musique dans le top 5 */
 	visibility: hidden;
@@ -763,6 +769,11 @@ même taille sur la même ligne */
 	.img_music {
 		width: 120px;
 		margin-right: 0px;
+	}
+
+	#img_player {
+		width: 0px;
+		visibility: hidden;
 	}
 
 	.div_music_title_author {

@@ -1,6 +1,6 @@
 <?php
 
-include 'curl_function.php';
+include 'others_php/php_functions.php';
 
 //Test de gestion de cookies... Qui ne marche pas vraiment
 header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
@@ -34,16 +34,21 @@ $array_top_10_albums = getArrayDeezer("https://api.deezer.com/chart/0/albums?lim
 $array_duration_top_10_albums = array();
 if(is_null($array_top_10_albums) == false) { //Si on a bien récupéré les infos des top 10 albums
     for ($i=0; $i < count($array_top_10_albums); $i++) {
+
         $request_actu = $array_top_10_albums[$i]["tracklist"];
         $array_tracks_album_actu = getArrayDeezer($request_actu, $certificate, false, $show_PHP_warnings)["data"];
 
         $duration_seconds_album_actu = 0;
+        $duration_minuts_album_actu = "??:??";
 
-        for ($y=0; $y < count($array_tracks_album_actu); $y++) { 
-            $duration_seconds_album_actu += $array_tracks_album_actu[$y]["duration"];
+        if(is_null($array_tracks_album_actu) == false) {
+            for ($y=0; $y < count($array_tracks_album_actu); $y++) { 
+                $duration_seconds_album_actu += $array_tracks_album_actu[$y]["duration"];
+            }
+
+            $duration_minuts_album_actu = getTimeMinutes($duration_seconds_album_actu);
         }
 
-        $duration_minuts_album_actu = getTimeMinutes($duration_seconds_album_actu);
         array_push($array_duration_top_10_albums, $duration_minuts_album_actu);
     }
 }
@@ -56,16 +61,6 @@ $array_top_playlists = getArrayDeezer("https://api.deezer.com/chart/0/playlists?
 
 //Les moments radios préférés
 $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcasts?limit=".$limit_radio_replays, $certificate, false, $show_PHP_warnings)["data"];
-
-
-
-function getTimeMinutes($timeSeconds) {
-    $nbMinuts  = intdiv($timeSeconds, 60);
-    $nbSeconds = $timeSeconds%60;
-
-    return str_pad($nbMinuts, 2, "0", STR_PAD_LEFT).":".str_pad($nbSeconds, 2, "0", STR_PAD_LEFT);
-}
-
 
 ?>
 
@@ -80,7 +75,7 @@ function getTimeMinutes($timeSeconds) {
         
         <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=1.0, minimum-scale=0.86">
         
-
+        <link rel="icon" href="/images/Sonic_Headphones.png" sizes="16x16" type="image/png">
 
         <link rel="stylesheet" type="text/css" href="index.css">
         <script type="text/javascript" charset="UTF-8" src="index.js"></script>
@@ -92,12 +87,15 @@ function getTimeMinutes($timeSeconds) {
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
         <!-- Slick -->
+            <!-- Thème changé pour bug en cas de warning (height: 100% qui rend le caroussel 10 fois trop grand) et celui par défaut -->
         <link rel="stylesheet" type="text/css" href="/lib/slick/slick.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="/lib/slick/slick-default.css"/> -->
+
             <!-- Thème personnalisé que j'ai modifié et thème par défaut -->
         <link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css"/>
         <!-- <link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme-default.css"/> -->
 
-        <!-- Deezer SDK -->
+        <!-- Deezer SDK, inutilisé au final -->
         <!--<script type="text/javascript" src="https://e-cdn-files.dzcdn.net/js/min/dz.js"></script>-->
 
 
@@ -258,6 +256,7 @@ function getTimeMinutes($timeSeconds) {
                             <div class="div_top_10_element div_music_element">
                                 <span class="number_top_10"><?php echo(str_pad(($i + 1), 2, "0", STR_PAD_LEFT)); ?></span>
                                 <img src=<?php echo($array_top_10_albums[$i]["artist"]["picture"]); ?> class="img_music">
+                                <!-- <img src=<?php echo($array_top_10_albums[$i]["cover"]); ?> class="img_music"> -->
                                 <div class="div_music_title_author">
                                     <?php echo($array_top_10_albums[$i]["title"]) ?> <br>
                                     <span class="blue_text author"><?php echo($array_top_10_albums[$i]["artist"]["name"]); ?></span>
