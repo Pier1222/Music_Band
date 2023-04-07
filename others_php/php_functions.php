@@ -1,12 +1,12 @@
 <?php
 
 //FALSE pour ne pas afficher les warnings PHP pour l'utiliser et TRUE pour montrer ces erreurs dans le cadre de débogage
-$show_PHP_warnings = false;
+$show_PHP_warnings = true;
 
 //Certificat qui permet de faire fonctionner les requêtes cURL
 $certificate = "C:\wamp64\cacert.pem";
 
-function getArrayDeezer($request, $certificate, $debug_echo, $show_PHP_errors) {
+function getArrayDeezer($request, $certificate, $returnAsArray, $debug_echo, $show_PHP_errors) {
     $curl = curl_init();
     curl_setopt_array($curl, [
         CURLOPT_URL => $request,
@@ -61,9 +61,12 @@ function getArrayDeezer($request, $certificate, $debug_echo, $show_PHP_errors) {
             echo "\n\n";
         }
         
-
-        //Récupère la réponse sous forme de tableau
-        $array_response = json_decode($response, true);
+        if($returnAsArray) {
+            //Récupère la réponse sous forme de tableau
+            $array_response = json_decode($response, true);
+        } else {
+            $array_response = $response;
+        }
 
         return $array_response;
     }

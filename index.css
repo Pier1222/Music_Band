@@ -156,7 +156,8 @@ svg {
 	margin-left: 6px;
 }
 
-/*--------------------------------------------*/
+/*--------------------------------------------
+Ancienne version du caroussel inutilisée */
 
 .slide-arrow {
   position: absolute;
@@ -425,7 +426,7 @@ même taille sur la même ligne */
 	font-weight: 300;
 }
 
-.div_music_lenght {
+.div_music_length {
 	font-weight: 300;
 	margin-left: 10px;
 
@@ -610,6 +611,7 @@ même taille sur la même ligne */
 	/* Permet à ce que le player soit fixé en bas de la page */
     position: fixed; 
     bottom:0%;
+    left: 0%;
     width:100%; 
     max-width: 100%;
 
@@ -650,6 +652,11 @@ même taille sur la même ligne */
 
 #svg_music_next {
 	cursor: pointer;
+}
+
+.div_footer_player_button_to_album {
+	position: fixed;
+	visibility: hidden;
 }
 
 
@@ -783,7 +790,7 @@ même taille sur la même ligne */
 		text-align: center;
 	}
 
-	.div_music_lenght {
+	.div_music_length {
 		margin-left: 0px;
 	}
 

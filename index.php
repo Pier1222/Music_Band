@@ -18,17 +18,26 @@ $limit_playlists     = 30;
 $limit_radio_replays = 4;
 
 //Liste des genres
-//Oui, le tableau se trouve à l'intérieur d'un tableau "data qui n'a que ça"
-$array_genres = getArrayDeezer("https://api.deezer.com/genre", $certificate, false, $show_PHP_warnings)["data"];
+//Oui, le tableau se trouve à l'intérieur d'un tableau "data" qui n'a que ça
+$array_genres = getArrayDeezer("https://api.deezer.com/genre", $certificate, true, false, $show_PHP_warnings)["data"];
 //print_r($array_genres[0]);
 
 
 //Je sais que Deezer limite déjà le nombre de morceaux à 10 dans ses tops mais on ne sait jamais
-$array_top_10_singles = getArrayDeezer("https://api.deezer.com/chart/0/tracks?limit=".$limits_TOP_10, $certificate, false, $show_PHP_warnings)["data"];
+$array_top_10_singles = getArrayDeezer("https://api.deezer.com/chart/0/tracks?limit=".$limits_TOP_10, $certificate, true, false, $show_PHP_warnings)["data"];
 //print_r($array_top_10_singles);
 
+/*Permet de générer une playlist pour le player en bas de page
+qui peut permet de switcher sur les musiques du TOP avec les boutons suivant et précédent*/
+$array_top_10_singles_id = array();
+if(is_null($array_top_10_singles) == false) {
+    for ($i=0; $i < count($array_top_10_singles); $i++) { 
+        array_push($array_top_10_singles_id, $array_top_10_singles[$i]["id"]);
+    }
+}
+
 //Il n'y a pas de durée donnée pour les albums, il faut donc chercher la liste des albums associés pour additionner leurs durées
-$array_top_10_albums = getArrayDeezer("https://api.deezer.com/chart/0/albums?limit=".$limits_TOP_10, $certificate, false, $show_PHP_warnings)["data"];
+$array_top_10_albums = getArrayDeezer("https://api.deezer.com/chart/0/albums?limit=".$limits_TOP_10, $certificate, true, false, $show_PHP_warnings)["data"];
 //print_r($array_top_10_album[0]);
 
 $array_duration_top_10_albums = array();
@@ -36,7 +45,7 @@ if(is_null($array_top_10_albums) == false) { //Si on a bien récupéré les info
     for ($i=0; $i < count($array_top_10_albums); $i++) {
 
         $request_actu = $array_top_10_albums[$i]["tracklist"];
-        $array_tracks_album_actu = getArrayDeezer($request_actu, $certificate, false, $show_PHP_warnings)["data"];
+        $array_tracks_album_actu = getArrayDeezer($request_actu, $certificate, true, false, $show_PHP_warnings)["data"];
 
         $duration_seconds_album_actu = 0;
         $duration_minuts_album_actu = "??:??";
@@ -54,13 +63,13 @@ if(is_null($array_top_10_albums) == false) { //Si on a bien récupéré les info
 }
 
 //L'artiste du moment
-$artist_moment = getArrayDeezer("https://api.deezer.com/chart/0/artists?index=".$index_artist_moment."limit=".$limit_artist_moment, $certificate, false, $show_PHP_warnings)["data"][0];
+$artist_moment = getArrayDeezer("https://api.deezer.com/chart/0/artists?index=".$index_artist_moment."limit=".$limit_artist_moment, $certificate, true, false, $show_PHP_warnings)["data"][0];
 
 //Top des playlists
-$array_top_playlists = getArrayDeezer("https://api.deezer.com/chart/0/playlists?limit=".$limit_playlists, $certificate, false, $show_PHP_warnings)["data"];
+$array_top_playlists = getArrayDeezer("https://api.deezer.com/chart/0/playlists?limit=".$limit_playlists, $certificate, true, false, $show_PHP_warnings)["data"];
 
 //Les moments radios préférés
-$array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcasts?limit=".$limit_radio_replays, $certificate, false, $show_PHP_warnings)["data"];
+$array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcasts?limit=".$limit_radio_replays, $certificate, true, false, $show_PHP_warnings)["data"];
 
 ?>
 
@@ -75,7 +84,7 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
         
         <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=1.0, minimum-scale=0.86">
         
-        <link rel="icon" href="/images/Sonic_Headphones.png" sizes="16x16" type="image/png">
+        <link rel="icon" href="images/Sonic_Headphones.png" sizes="16x16" type="image/png">
 
         <link rel="stylesheet" type="text/css" href="index.css">
         <script type="text/javascript" charset="UTF-8" src="index.js"></script>
@@ -215,13 +224,19 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                         <?php for ($i=0; $i < count($array_top_10_singles); $i++) { 
                             $timeMinutesActu = getTimeMinutes($array_top_10_singles[$i]["duration"]); ?>
 
+                            <!-- Ancienne version
                             <div class="div_top_10_element div_music_element" onclick=
                             "changePlayer(
-                            '<?php echo($array_top_10_singles[$i]["artist"]["picture"]) ?>',
-                            '<?php echo($array_top_10_singles[$i]["title_short"]) ?>',
-                            '<?php echo($array_top_10_singles[$i]["artist"]["name"]) ?>',
-                            '<?php echo($timeMinutesActu) ?>',
-                            <?php echo($array_top_10_singles[$i]["id"]) ?>)">
+                            '<?//php echo($array_top_10_singles[$i]["artist"]["picture"]) ?>',
+                            '<?//php echo($array_top_10_singles[$i]["title_short"]) ?>',
+                            '<?//php echo($array_top_10_singles[$i]["artist"]["name"]) ?>',
+                            '<?//php echo($timeMinutesActu) ?>',
+                            <?//php echo($array_top_10_singles[$i]["id"]) ?>)">-->
+
+                            <div class="div_top_10_element div_music_element" onclick=
+                            "createPlaylist_Top10(
+                                <?php echo(json_encode($array_top_10_singles_id)); ?>,
+                                <?php echo($i) ?>)">
 
                                 <span class="number_top_10"><?php echo(str_pad(($i + 1), 2, "0", STR_PAD_LEFT)); ?></span>
                                 <img src=<?php echo($array_top_10_singles[$i]["artist"]["picture"]); ?> class="img_music">
@@ -231,7 +246,7 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                                     <span class="blue_text author"><?php echo($array_top_10_singles[$i]["artist"]["name"]); ?></span>
                                 </div>
 
-                                <div class="div_music_lenght">
+                                <div class="div_music_length">
                                     <?php echo($timeMinutesActu); ?>
                                 </div>
 
@@ -253,7 +268,7 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                         </div>
 
                         <?php for ($i=0; $i < count($array_top_10_albums); $i++) { ?>
-                            <div class="div_top_10_element div_music_element">
+                            <div class="div_top_10_element div_music_element" onclick="createPlaylist_Album_TopPlaylist('<?php echo($array_top_10_albums[$i]["tracklist"]) ?>', '<?php echo($array_top_10_albums[$i]["artist"]["picture"]) ?>')">
                                 <span class="number_top_10"><?php echo(str_pad(($i + 1), 2, "0", STR_PAD_LEFT)); ?></span>
                                 <img src=<?php echo($array_top_10_albums[$i]["artist"]["picture"]); ?> class="img_music">
                                 <!-- <img src=<?php echo($array_top_10_albums[$i]["cover"]); ?> class="img_music"> -->
@@ -262,7 +277,7 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                                     <span class="blue_text author"><?php echo($array_top_10_albums[$i]["artist"]["name"]); ?></span>
                                 </div>
 
-                                <div class="div_music_lenght">
+                                <div class="div_music_length">
                                     <?php echo($array_duration_top_10_albums[$i]); ?>
                                 </div>
                             </div>
@@ -307,7 +322,7 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                         </div>
                     <?php } else { ?>
                         <?php for ($i=0; $i < count($array_top_playlists); $i++) { ?>
-                            <div class="div_caroussel_one_element">
+                            <div class="div_caroussel_one_element" onclick="createPlaylist_Album_TopPlaylist('<?php echo($array_top_playlists[$i]["tracklist"]) ?>')">
                                 <img src=<?php echo($array_top_playlists[$i]["picture_big"]) ?> class="img_caroussel">
                                 <span class="text_caroussel"><?php echo($array_top_playlists[$i]["title"]) ?></span>
                             </div>
@@ -406,6 +421,8 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                 </div>
             </div>
 
+            <!-- Le contenu de ce DIV est généré par le Javascript -->
+            <div id="playlist_player"></div>
 
             <div class="div_music_element" id="footer_player">
                 <div class="div_player_info">
@@ -414,13 +431,13 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                         <div id="div_title_player">STAY</div>
                         <span class="blue_text author" id="span_author_player">The Kid Laroi</span>
                     </div>
-                    <div class="div_music_lenght" id="div_lenght_player">
+                    <div class="div_music_length" id="div_length_player">
                         00:00
                     </div>
                 </div>
                 <div class="div_footer_player_buttons">
                     <div class="div_footer_player_arrow">
-                        <svg width="100%" height="100%" id="svg_music_previous" viewBox="0 0 100 100"> 
+                        <svg width="100%" height="100%" id="svg_music_previous" viewBox="0 0 100 100" onclick="changeIndexPlaylistRelative(-1)"> 
                             <rect x="40%" y="40%" width="4.29%" height="17%" fill="#FFFFFF"/> 
                             <polygon points="64.29,38 64.29,58 42.86,48" fill="#FFFFFF"/>
                             <!-- Sans le viewbow et avec la taille originale
@@ -444,7 +461,7 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                     </div>
 
                     <div class="div_footer_player_arrow">
-                        <svg width="100%" height="100%" id="svg_music_next" viewBox="0 0 100 100"> 
+                        <svg width="100%" height="100%" id="svg_music_next" viewBox="0 0 100 100" onclick="changeIndexPlaylistRelative(1)"> 
                             <rect x="50%" y="40%" width="4.29%" height="17%" fill="#FFFFFF"/>
                             <polygon points="28.57,38 28.57,58 50,48" fill="#FFFFFF"/>
                             <!-- Sans le viewbox et avec la taille originale
@@ -452,6 +469,12 @@ $array_top_radio_replay = getArrayDeezer("https://api.deezer.com/chart/0/podcast
                             -->
                         </svg>
                     </div>
+
+                    <!-- Il serait bien d'ajouter des boutons pour
+                        - Passer à l'album de la chanson si on joue une chanson du top des morceaux
+                        - Faire apparaître la playlist du player au lieu qu'elle reste tout le temps en bas de page -->
+                    <button class="div_footer_player_button_to_album">Passer à l'album</button>
+
                 </div>
             </div>
         </footer>
